@@ -10,12 +10,17 @@ from matplotlib import animation
 
 import random
 
-boids_x = [random.uniform(-450, 50.0) for x in range(50)]
-boids_y = [random.uniform(300.0, 600.0) for x in range(50)]
-boid_x_velocities = [random.uniform(0, 10.0) for x in range(50)]
-boid_y_velocities = [random.uniform(-20.0, 20.0) for x in range(50)]
-boids = (boids_x, boids_y, boid_x_velocities, boid_y_velocities)
+# boids_x = [random.uniform(-450, 50.0) for x in range(50)]
+# boids_y = [random.uniform(300.0, 600.0) for x in range(50)]
+# boid_x_velocities = [random.uniform(0, 10.0) for x in range(50)]
+# boid_y_velocities = [random.uniform(-20.0, 20.0) for x in range(50)]
+# boids = (boids_x, boids_y, boid_x_velocities, boid_y_velocities)
 
+boids_x = [-300.0, 20.0, 3.0]
+boids_y = [420, 480, 540]
+boids_x_velocities = [1.0, 2.0, 7.0]
+boids_y_velocities = [-15.0, 10.0, 15.0]
+boids = (boids_x, boids_y, boids_x_velocities, boids_y_velocities)
 
 def update_boids(boids):
     x_pos, y_pos, x_vel, y_vel = boids
@@ -36,3 +41,8 @@ def update_boids(boids):
         # Move according to velocities
         x_pos[i] = x_pos[i] + x_vel[i]
         y_pos[i] = y_pos[i] + y_vel[i]
+    
+    print(x_pos, y_pos, x_vel, y_vel)
+
+update_boids(boids)
+print("hi")
