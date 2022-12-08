@@ -21,20 +21,23 @@ boids = (boids_x, boids_y, boids_x_velocities, boids_y_velocities)
 
 def update_boids(boids):
     x_pos, y_pos, x_vel, y_vel = boids
+    number_of_boids = len(x_pos)
 
-    for i in range(len(x_pos)):
-        for j in range(len(x_pos)):
+    for i in range(number_of_boids):
+        for j in range(number_of_boids):
+            diff_x = x_pos[j] - x_pos[i]
+            diff_y = y_pos[j] - y_pos[i]
             # Fly towards the middle
-            x_vel[i] = x_vel[i] + (x_pos[j] - x_pos[i]) * 0.01 / len(x_pos)
-            y_vel[i] = y_vel[i] + (y_pos[j] - y_pos[i]) * 0.01 / len(x_pos)
+            x_vel[i] = x_vel[i] + (diff_x) * 0.01 / number_of_boids
+            y_vel[i] = y_vel[i] + (diff_y) * 0.01 / number_of_boids
             # Fly away from nearby boids
-            if (x_pos[j] - x_pos[i]) ** 2 + (y_pos[j] - y_pos[i]) ** 2 < 100:
-                x_vel[i] = x_vel[i] + (x_pos[i] - x_pos[j])
-                y_vel[i] = y_vel[i] + (y_pos[i] - y_pos[j])
+            if (diff_x) ** 2 + (diff_y) ** 2 < 100:
+                x_vel[i] = x_vel[i] + (diff_x)
+                y_vel[i] = y_vel[i] + (diff_y)
             # Try to match speed with nearby boids
-            if (x_pos[j] - x_pos[i]) ** 2 + (y_pos[j] - y_pos[i]) ** 2 < 10000:
-                x_vel[i] = x_vel[i] + (x_vel[j] - x_vel[i]) * 0.125 / len(x_pos)
-                y_vel[i] = y_vel[i] + (y_vel[j] - y_vel[i]) * 0.125 / len(x_pos)
+            if (diff_x) ** 2 + (diff_y) ** 2 < 10000:
+                x_vel[i] = x_vel[i] + (x_vel[j] - x_vel[i]) * 0.125 / number_of_boids
+                y_vel[i] = y_vel[i] + (y_vel[j] - y_vel[i]) * 0.125 / number_of_boids
         # Move according to velocities
         x_pos[i] = x_pos[i] + x_vel[i]
         y_pos[i] = y_pos[i] + y_vel[i]
