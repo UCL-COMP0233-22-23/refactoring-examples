@@ -10,11 +10,21 @@ from matplotlib import animation
 
 import random
 
-boids_x=[random.uniform(-450,50.0) for x in range(50)]
-boids_y=[random.uniform(300.0,600.0) for x in range(50)]
-boid_x_velocities=[random.uniform(0,10.0) for x in range(50)]
-boid_y_velocities=[random.uniform(-20.0,20.0) for x in range(50)]
-boids=(boids_x,boids_y,boid_x_velocities,boid_y_velocities)
+def initialise_boids(lower_bound_x, upper_bound_x, lower_bound_y, upper_bound_y,
+lower_bound_velocity_x, upper_bound_velocity_x, lower_bound_velocity_y,upper_bound_velocity_y, total_boids):
+    boids_x = []
+    boids_y = []
+    boid_x_velocities = []
+    boid_y_velocities = []
+
+    for x in range (total_boids):
+        boids_x.append(random.uniform(lower_bound_x,upper_bound_x))
+        boids_y.append(random.uniform(lower_bound_y,upper_bound_y))
+        boid_x_velocities.append(random.uniform(lower_bound_velocity_x, upper_bound_velocity_x))
+        boid_y_velocities.append(random.uniform(lower_bound_velocity_y, upper_bound_velocity_y))
+    
+    return (boids_x,boids_y,boid_x_velocities,boid_y_velocities)
+
 
 def update_boids(boids):
     xs,ys,xvs,yvs=boids
@@ -41,3 +51,6 @@ def update_boids(boids):
     for i in range(len(xs)):
         xs[i]=xs[i]+xvs[i]
         ys[i]=ys[i]+yvs[i]
+
+if __name__ == '__main__':
+    print(initialise_boids(-450, 50, 300, 600, 0, 10.0, -20, 20, 50))
