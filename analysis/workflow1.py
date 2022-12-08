@@ -25,9 +25,10 @@ with open('weights.csv') as filew:
         weight.append(float(n.strip()))
 
 results = []
+
 for i in range(len(data1)):
     dis_with_weight = 0
-    for j in range(len(w)):
+    for j in range(len(weight)):
         distance = data1[i][j] - data2[i][j]
         dis_with_weight += weight[j] * abs(distance)
     results.append(dis_with_weight)
