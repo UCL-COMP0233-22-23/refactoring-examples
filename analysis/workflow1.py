@@ -18,20 +18,20 @@ data1 = read_csv('data1.csv')
 data2 = read_csv('data2.csv')
 
 
-
 with open('weights.csv') as filew:
     linew = filew.read()
-    w = []
+    weight = []
     for n in linew.split(','):
-        w.append(float(n.strip()))
+        weight.append(float(n.strip()))
 
 results = []
 for i in range(len(data1)):
-    s = 0
+    dis_with_weight = 0
     for j in range(len(w)):
-        d = data1[i][j] - data2[i][j]
-        s += w[j] * abs(d)
-    results.append(s)
+        distance = data1[i][j] - data2[i][j]
+        dis_with_weight += weight[j] * abs(distance)
+    results.append(dis_with_weight)
+
 
 critical = 0
 for i in range(len(results)):  # for all i
