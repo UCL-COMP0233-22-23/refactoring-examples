@@ -24,39 +24,39 @@ class boids:
         self.boid_y_velocities = boid_y_velocities
 
     def update_boids(self):
-        xs = self.boids_x
-        ys = self.boids_y
-        xvs = self.boid_x_velocities
-        yvs = self.boid_y_velocities
+        pos_x = self.boids_x
+        pos_y = self.boids_y
+        vel_x = self.boid_x_velocities
+        vel_y = self.boid_y_velocities
         # Fly towards the middle
         for i in range(self.num):
             for j in range(self.num):
-                xvs[i]=xvs[i]+(xs[j]-xs[i])*0.01/self.num
+                vel_x[i]=vel_x[i]+(pos_x[j]-pos_x[i])*0.01/self.num
 
         for i in range(self.num):
             for j in range(self.num):
-                yvs[i]=yvs[i]+(ys[j]-ys[i])*0.01/self.num
+                vel_y[i]=vel_y[i]+(pos_y[j]-pos_y[i])*0.01/self.num
 
         # Fly away from nearby boids
         for i in range(self.num):
             for j in range(self.num):
-                if distance(xs[j],xs[i],ys[j],ys[i]) < 100:
-                    xvs[i]=xvs[i]+(xs[i]-xs[j])
-                    yvs[i]=yvs[i]+(ys[i]-ys[j])
+                if distance(pos_x[j],pos_x[i],pos_y[j],pos_y[i]) < 100:
+                    vel_x[i]=vel_x[i]+(pos_x[i]-pos_x[j])
+                    vel_y[i]=vel_y[i]+(pos_y[i]-pos_y[j])
         # Try to match speed with nearby boids
         for i in range(self.num):
             for j in range(self.num):
-                if distance(xs[j],xs[i],ys[j],ys[i]) < 10000:
-                    xvs[i]=xvs[i]+(xvs[j]-xvs[i])*0.125/self.num
-                    yvs[i]=yvs[i]+(yvs[j]-yvs[i])*0.125/self.num
-        self.boid_x_velocities = xvs
-        self.boid_y_velocities = yvs
+                if distance(pos_x[j],pos_x[i],pos_y[j],pos_y[i]) < 10000:
+                    vel_x[i]=vel_x[i]+(vel_x[j]-vel_x[i])*0.125/self.num
+                    vel_y[i]=vel_y[i]+(vel_y[j]-vel_y[i])*0.125/self.num
+        self.boid_x_velocities = vel_x
+        self.boid_y_velocities = vel_y
         # Move according to velocities
         for i in range(self.num):
-            xs[i]=xs[i]+xvs[i]
-            ys[i]=ys[i]+yvs[i]
-        self.boids_x = xs
-        self.boids_y = ys
+            pos_x[i]=pos_x[i]+vel_x[i]
+            pos_y[i]=pos_y[i]+vel_y[i]
+        self.boids_x = pos_x
+        self.boids_y = pos_y
         return self
 
 
