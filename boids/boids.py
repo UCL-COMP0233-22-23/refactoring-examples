@@ -41,3 +41,5 @@ def update_boids(boids):
     for i in range(len(xs)):
         xs[i]=xs[i]+xvs[i]
         ys[i]=ys[i]+yvs[i]
+
+#update_boids(boids)
