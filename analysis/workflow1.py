@@ -2,23 +2,22 @@ from math import *
 
 # read sample files
 
-with open('data1.csv') as file1:
-    lines1 = file1.readlines()
-    data1 = []
-    for line in lines1:
-        row = []
-        for n in line.split(','):
-            row.append(float(n.strip()))
-        data1.append(row)
+def read_csv(csv_file):
+    with open(csv_file) as file:
+        lines = file.readlines()
+        data = []
+        for line in lines:
+            row = []
+            for n in line.split(','):
+                row.append(float(n.strip()))
+        data.append(row)
+    return data    
+    
 
-with open('data2.csv') as file2:
-    lines2 = file2.readlines()
-    data2 = []
-    for line in lines2:
-        row = []
-        for n in line.split(','):
-            row.append(float(n.strip()))
-        data2.append(row)
+data1 = read_csv('data1.csv')
+data2 = read_csv('data2.csv')
+
+
 
 with open('weights.csv') as filew:
     linew = filew.read()
