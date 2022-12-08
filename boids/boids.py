@@ -16,7 +16,7 @@ def distance(x1,x2,y1,y2):
     return (x1-x2)**2 + (y1-y2)**2
 
 class boids:
-    def __init__(self):
+    def __init__(self,boid_num,boids_x,boids_y,boid_x_velocities,boid_y_velocities):
         self.num = boid_num
         self.boids_x = boids_x
         self.boids_y = boids_y
