@@ -5,10 +5,7 @@ for use as an exercise on refactoring.
 This code simulates the swarming behaviour of bird-like objects ("boids").
 """
 
-from matplotlib import pyplot as plt
-from matplotlib import animation
-
-import random
+#import random
 
 # boids_x = [random.uniform(-450, 50.0) for x in range(50)]
 # boids_y = [random.uniform(300.0, 600.0) for x in range(50)]
