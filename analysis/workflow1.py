@@ -33,11 +33,10 @@ for i in range(len(data1)):
     results.append(dis_with_weight)
 
 
+# Show results with weight*distance greater than 5
 critical = 0
 for i in range(len(results)):  # for all i
     if results[i] > 5:
         critical = critical + 1  # increase by 1
-if critical == 1:
-    print("criticality: 1 result above 5")
-else:
-    print("criticality:", critical, "results above 5")
+
+print("criticality:", critical, "results above 5")
